@@ -493,7 +493,7 @@ def train(i):
 
 i = 0
 try:
-    with tqdm(position=0, leave=True) as pbar:
+    with tqdm() as pbar:
         while True:
             train(i)
             if i == args.max_iterations:
@@ -541,7 +541,7 @@ if args.make_video:
                '-preset', 'veryslow',
                '-metadata', f'comment={args.prompts}',
                output_file], stdin=PIPE)
-    for im in tqdm(frames, position=1, leave=True):
+    for im in tqdm(frames):
         im.save(p.stdin, 'PNG')
     p.stdin.close()
     p.wait()
